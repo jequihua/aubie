@@ -10,12 +10,11 @@ tables_list <- list()
 
 # Initialize counter.
 counter = 0
-
 # Sweep through folders.
 for (f in 1:length(folders)){
 print(f)
   folder <- folders[f]
-  site <- strsplit(folder,split = "/")[[1]][7]
+  site <- as.numeric(strsplit(strsplit(folder,split = "/")[[1]][7],split = "e")[[1]][2])
   
   # List text files.
   txts <- list.files(folder, pattern = "\\.txt$")
@@ -53,5 +52,4 @@ print(f)
 
 binded_df <- do.call("rbind", tables_list)
 
-length(unique(binded_df$Species.Code))
-length(unique(binded_df$Common.Name))
+View(binded_df)
